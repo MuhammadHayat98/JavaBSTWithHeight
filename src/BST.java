@@ -9,17 +9,18 @@ class BSTNode<E >
    BSTNode<E> left;
    BSTNode<E> right;
    BSTNode<E> parent;
+   int height;
   
    public BSTNode ( E  x)
    {
-      item = x; left = null; right = null; parent = null;
+      item = x; left = null; right = null; parent = null; this.height = 0;
       
    }
    
    public BSTNode (E x , BSTNode<E> left, BSTNode<E> right, BSTNode<E> parent)
    {
       item = x; 
-      this.left = left; this.right = right; this.parent = parent;   
+      this.left = left; this.right = right; this.parent = parent; this.height = 0;  
    }
    
    public String toString()
@@ -169,6 +170,10 @@ public class BST<E extends Comparable<E>>
             return p;
       }
       return null;  //x is not found
+   }
+   
+   private int assignHeight(BSTNode<E> x) {
+	   
    }
    
              
