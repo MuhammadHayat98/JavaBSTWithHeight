@@ -25,7 +25,7 @@ class BSTNode<E >
    
    public String toString()
    {
-      return "" + item ;
+      return "(i:" + item + ", h: " + height + ")";
    }
 }
 
@@ -34,11 +34,11 @@ public class BST<E extends Comparable<E>>
 {
    private BSTNode<E> root;
    private int size;
-  
+
    
    
    public BST()
-   {  root = null;  size = 0;  
+   {  root = null;  size = 0;   
    }
    
    /*---------------- public operations --------------------*/
@@ -49,6 +49,10 @@ public class BST<E extends Comparable<E>>
    public int getSize()
    {  
       return size;
+   }
+   
+   public int getHeight() {
+	   return root.height;
    }
    
         
@@ -108,6 +112,7 @@ public class BST<E extends Comparable<E>>
       else
          parent.right = insertedNode;
       size++; 
+      assignHeight(insertedNode);
       return true;   
         
    }  //insert
@@ -124,16 +129,20 @@ public class BST<E extends Comparable<E>>
          return false;  //x not in tree
                   
       //Case: p has a right child child and no left child
-      if( p.left == null && p.right != null)
+      if( p.left == null && p.right != null) {
          deleteNodeWithOnlyRightChild(p);
-            
+         assignHeight(p.right);
+      }     
        //Case: p has a left child and has no right child
-      else if( p.left !=null && p.right == null)
+      else if( p.left !=null && p.right == null) {
          deleteNodeWithOnlyLeftChild(p);
-         
+         assignHeight(p.left);
+      }
             //case: p has no children
-      else if (p.left ==null && p.right == null)
+      else if (p.left ==null && p.right == null) {
          deleteLeaf(p);
+         assignHeight(p.parent);
+      }
                 
       else //case : p has two children. Delete successor node
       {
@@ -147,6 +156,7 @@ public class BST<E extends Comparable<E>>
          else
             deleteNodeWithOnlyRightChild(succ);
          
+         assignHeight(p.right);
       }
       return true;         
    }   //remove
@@ -172,9 +182,15 @@ public class BST<E extends Comparable<E>>
       return null;  //x is not found
    }
    
-   /*private int assignHeight(BSTNode<E> x) {
-	   
-   }*/
+   private void assignHeight(BSTNode<E> x) {
+	   BSTNode<E> tmp = x;
+	   while(tmp != null) {
+		   int a = (tmp.left == null) ? -1 : tmp.left.height;
+		   int b = (tmp.right == null) ? -1 : tmp.right.height;
+		   tmp.height = 1 + Math.max(a, b);
+		   tmp = tmp.parent;
+	   }
+   }
    
              
      /***************** private remove helper methods ***************************************/

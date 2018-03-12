@@ -15,18 +15,19 @@ public class Driver {
 	      bst.inOrderTraversal();
 	      System.out.println("Preorder Traversal1: "); 
 	      bst.preOrderTraversal();
-
-	      System.out.println( "Tree Height = " + bst.getHeight() + "\t\tCorrect Answer: 3" );
-	      System.out.println( "Min Value =   " + bst.findMin() + "\t\tCorrect Answer:20");
-	      System.out.println( "Max Value =   " + bst.findMax() + "\t\tCorrect Answer:150");
 	      
-	      int max = bst.removeMax();
-	      int min = bst.removeMin();
-	      System.out.println ("removeMax returns " + max + "\t\tCorrect Answer:150");
-	      System.out.println ("removeMin returns " + min + "\t\tCorrect Answer:20");
+	      System.out.println( "Tree Height = " + bst.getHeight() + "\t\tCorrect Answer: 3" );
+	      //System.out.println( "Min Value =   " + bst.findMin() + "\t\tCorrect Answer:20");
+	      //System.out.println( "Max Value =   " + bst.findMax() + "\t\tCorrect Answer:150");
+	      
+	      bst.remove(100);
+	      //int max = bst.removeMax();
+	      //int min = bst.removeMin();
+	      //System.out.println ("removeMax returns " + max + "\t\tCorrect Answer:150");
+	      //System.out.println ("removeMin returns " + min + "\t\tCorrect Answer:20");
 	      System.out.println( "Tree Height = " + bst.getHeight() + "\t\tCorrect Answer: 2" );
-	      System.out.println( "Min Value =   " + bst.findMin() + "\tCorrect Answer:30");
-	      System.out.println( "Max Value =   " + bst.findMax() + "\tCorrect Answer:110");
+	     // System.out.println( "Min Value =   " + bst.findMin() + "\tCorrect Answer:30");
+	     // System.out.println( "Max Value =   " + bst.findMax() + "\tCorrect Answer:110");
 	      
 	      
 	      System.out.println("Inorder Traversal2: ");
@@ -43,8 +44,8 @@ public class Driver {
 	      bst.remove(50);
 
 	      System.out.println( "Tree Height = " + bst.getHeight() + "\t\tCorrect Answer: 4" );
-	      System.out.println( "Min Value =   " + bst.findMin() + "\t\tCorrect Answer:30");
-	      System.out.println( "Max Value =   " + bst.findMax() + "\t\tCorrect Answer:110");
+	    //  System.out.println( "Min Value =   " + bst.findMin() + "\t\tCorrect Answer:30");
+	     // System.out.println( "Max Value =   " + bst.findMax() + "\t\tCorrect Answer:110");
 	      System.out.println("Inorder Traversal3: ");
 	      bst.inOrderTraversal();
 	      System.out.println("Preorder Traversal3: "); 
