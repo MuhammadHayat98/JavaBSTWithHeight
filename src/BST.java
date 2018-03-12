@@ -172,9 +172,9 @@ public class BST<E extends Comparable<E>>
       return null;  //x is not found
    }
    
-   private int assignHeight(BSTNode<E> x) {
+   /*private int assignHeight(BSTNode<E> x) {
 	   
-   }
+   }*/
    
              
      /***************** private remove helper methods ***************************************/
