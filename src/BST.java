@@ -174,7 +174,7 @@ public class BST<E extends Comparable<E>>
    }
    
    public E findMax() {
-	   //t
+	   //tt
 	   BSTNode<E> tmp = root;
 	   while(tmp.right != null) {
 		   tmp = tmp.right;
