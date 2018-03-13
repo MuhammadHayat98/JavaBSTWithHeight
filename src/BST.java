@@ -156,7 +156,7 @@ public class BST<E extends Comparable<E>>
          else
             deleteNodeWithOnlyRightChild(succ);
          
-         assignHeight(p.right);
+         assignHeight(succ.parent);
       }
       return true;         
    }   //remove
