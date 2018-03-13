@@ -156,10 +156,32 @@ public class BST<E extends Comparable<E>>
          else
             deleteNodeWithOnlyRightChild(succ);
          
-         assignHeight(p.right);
+         assignHeight(succ.parent);
       }
       return true;         
    }   //remove
+   
+   public E findMin() {
+	   if(root == null)
+		   return null;
+	   else {
+		   BSTNode<E> tmp = this.root;
+		   while(tmp.left != null) {
+			   tmp = tmp.left;
+		   }
+		   return tmp.item;
+	   }
+   }
+   
+   public E findMax() {
+	   
+	   BSTNode<E> tmp = root;
+	   while(tmp.right != null) {
+		   tmp = tmp.right;
+	   }
+	   return tmp.item;
+   }
+   
    
    
  
