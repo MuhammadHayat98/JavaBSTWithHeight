@@ -174,14 +174,28 @@ public class BST<E extends Comparable<E>>
    }
    
    public E findMax() {
-	   //tt
-	   BSTNode<E> tmp = root;
-	   while(tmp.right != null) {
-		   tmp = tmp.right;
+	   if(root == null) 
+		   return null;
+	   else {
+		   BSTNode<E> tmp = root;
+		   while(tmp.right != null) {
+			   tmp = tmp.right;
+		   }
+		   return tmp.item;
 	   }
-	   return tmp.item;
    }
    
+   public E removeMin() {
+	   E min = findMin();
+	   remove(min);
+	   return min;
+   }
+   
+   public E removeMax() {
+	   E max = findMax();
+	   remove(max);
+	   return max;
+   }
    
    
  
