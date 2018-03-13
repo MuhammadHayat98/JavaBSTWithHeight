@@ -20,7 +20,7 @@ public class Driver {
 	      //System.out.println( "Min Value =   " + bst.findMin() + "\t\tCorrect Answer:20");
 	      //System.out.println( "Max Value =   " + bst.findMax() + "\t\tCorrect Answer:150");
 	      
-	      bst.remove(100);
+	      
 	      //int max = bst.removeMax();
 	      //int min = bst.removeMin();
 	      //System.out.println ("removeMax returns " + max + "\t\tCorrect Answer:150");
