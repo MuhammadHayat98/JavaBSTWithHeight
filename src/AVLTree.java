@@ -1,23 +1,23 @@
+//Muhammad Hayat
 //Comp 282
-//Implementing a Binary Search Tree as a generic class
-//Posted as BST.java for Project 3
+// Project 4
+// 3/15/18
 
-
-class BSTNode<E >
+class AVLNode<E >
 {
    E item;   
-   BSTNode<E> left;
-   BSTNode<E> right;
-   BSTNode<E> parent;
+   AVLNode<E> left;
+   AVLNode<E> right;
+   AVLNode<E> parent;
    int height;
   
-   public BSTNode ( E  x)
+   public AVLNode ( E  x)
    {
       item = x; left = null; right = null; parent = null; this.height = 0;
       
    }
    
-   public BSTNode (E x , BSTNode<E> left, BSTNode<E> right, BSTNode<E> parent)
+   public AVLNode (E x , AVLNode<E> left, AVLNode<E> right, AVLNode<E> parent)
    {
       item = x; 
       this.left = left; this.right = right; this.parent = parent; this.height = 0;  
@@ -29,15 +29,15 @@ class BSTNode<E >
    }
 }
 
-/*----------------class BST ---------------------------*/
-public class BST<E extends Comparable<E>>
+/*----------------class AVLTree ---------------------------*/
+public class AVLTree<E extends Comparable<E>>
 {
-   private BSTNode<E> root;
+   private AVLNode<E> root;
    private int size;
 
    
    
-   public BST()
+   public AVLTree()
    {  root = null;  size = 0;   
    }
    
@@ -83,13 +83,13 @@ public class BST<E extends Comparable<E>>
    
       if( root == null)
       {
-         root = new BSTNode(x, null, null, root);
+         root = new AVLNode(x, null, null, root);
          size++;
          return true;
       }    
        
-      BSTNode<E> parent = null;
-      BSTNode<E>  p = root;
+      AVLNode<E> parent = null;
+      AVLNode<E>  p = root;
       
       while (p != null)
       {
@@ -106,7 +106,7 @@ public class BST<E extends Comparable<E>>
       }
       
       //attach new node to parent
-      BSTNode<E> insertedNode = new BSTNode<E>(x, null, null, parent);
+      AVLNode<E> insertedNode = new AVLNode<E>(x, null, null, parent);
       if( x.compareTo(parent.item) < 0)
          parent.left = insertedNode;
       else
@@ -124,7 +124,7 @@ public class BST<E extends Comparable<E>>
          return false;  //x is not in tree
      
       //find x
-      BSTNode<E> p = find(x, root);
+      AVLNode<E> p = find(x, root);
       if( p == null)
          return false;  //x not in tree
                   
@@ -146,7 +146,7 @@ public class BST<E extends Comparable<E>>
                 
       else //case : p has two children. Delete successor node
       {
-         BSTNode<E> succ =  getSuccessorNode(p);;
+         AVLNode<E> succ =  getSuccessorNode(p);;
         
          p.item = succ.item;
            
@@ -165,7 +165,7 @@ public class BST<E extends Comparable<E>>
 	   if(root == null)
 		   return null;
 	   else {
-		   BSTNode<E> tmp = this.root;
+		   AVLNode<E> tmp = this.root;
 		   while(tmp.left != null) {
 			   tmp = tmp.left;
 		   }
@@ -177,7 +177,7 @@ public class BST<E extends Comparable<E>>
 	   if(root == null) 
 		   return null;
 	   else {
-		   BSTNode<E> tmp = root;
+		   AVLNode<E> tmp = root;
 		   while(tmp.right != null) {
 			   tmp = tmp.right;
 		   }
@@ -197,15 +197,18 @@ public class BST<E extends Comparable<E>>
 	   return max;
    }
    
+   public boolean isHeightBalanced() {
+	   return isHeightBalanced(root);
+   }
    
  
   /********************private methods ******************************/
   
         
 
-   private BSTNode<E> find(E x, BSTNode<E> t)  
+   private AVLNode<E> find(E x, AVLNode<E> t)  
    {
-      BSTNode<E> p = t;
+      AVLNode<E> p = t;
       while ( p != null)
       {
          if( x.compareTo(p.item) <0)
@@ -218,8 +221,8 @@ public class BST<E extends Comparable<E>>
       return null;  //x is not found
    }
    
-   private void assignHeight(BSTNode<E> x) {
-	   BSTNode<E> tmp = x;
+   private void assignHeight(AVLNode<E> x) {
+	   AVLNode<E> tmp = x;
 	   while(tmp != null) {
 		   int a = (tmp.left == null) ? -1 : tmp.left.height;
 		   int b = (tmp.right == null) ? -1 : tmp.right.height;
@@ -228,16 +231,32 @@ public class BST<E extends Comparable<E>>
 	   }
    }
    
+   private boolean isHeightBalanced(AVLNode t) {
+	   if(t == null) {
+		   return true;
+	   }
+	   else {
+		   int a = (t.right == null) ? -1 : t.right.height;
+		   int b = (t.left == null) ? -1 : t.left.height;
+		   int c = Math.abs((a-b));
+		   if( c > 1) 
+			   return false;
+		   
+		   else
+			   return (isHeightBalanced(t.left) && isHeightBalanced(t.right));
+	   }
+   }
+   
              
      /***************** private remove helper methods ***************************************/
    
-   private void deleteLeaf( BSTNode<E> t)
+   private void deleteLeaf( AVLNode<E> t)
    {
       if ( t == root)
          root = null;
       else
       {
-         BSTNode<E>  parent = t.parent;
+         AVLNode<E>  parent = t.parent;
          if( t.item.compareTo(parent.item) < 0)
             parent.left = null;
          else
@@ -246,7 +265,7 @@ public class BST<E extends Comparable<E>>
       size--;
    }
     
-   private void deleteNodeWithOnlyLeftChild( BSTNode<E> t)
+   private void deleteNodeWithOnlyLeftChild( AVLNode<E> t)
    {
       if( t == root)
       {
@@ -254,7 +273,7 @@ public class BST<E extends Comparable<E>>
       }
       else
       {
-         BSTNode<E> parent = t.parent;
+         AVLNode<E> parent = t.parent;
          if( t.item.compareTo( parent.item)< 0)
          {
             parent.left = t.left;
@@ -269,7 +288,7 @@ public class BST<E extends Comparable<E>>
       size--;      
    }                  
      
-   private void deleteNodeWithOnlyRightChild( BSTNode<E> t)
+   private void deleteNodeWithOnlyRightChild( AVLNode<E> t)
    {
       if( t == root)
       {
@@ -277,7 +296,7 @@ public class BST<E extends Comparable<E>>
       }
       else
       {
-         BSTNode<E> parent = t.parent;
+         AVLNode<E> parent = t.parent;
          if( t.item.compareTo(parent.item) < 0)
          {
             parent.left = t.right;
@@ -293,11 +312,11 @@ public class BST<E extends Comparable<E>>
               
    }                  
 
-   private BSTNode<E>  getSuccessorNode(BSTNode<E> t)
+   private AVLNode<E>  getSuccessorNode(AVLNode<E> t)
    {
      //only called when t.right != null
-      BSTNode<E> parent = t;
-      BSTNode<E> p = t.right;
+      AVLNode<E> parent = t;
+      AVLNode<E> p = t.right;
       while (p.left != null)
       {
          parent = p; p = p.left; 
@@ -310,7 +329,7 @@ public class BST<E extends Comparable<E>>
    //private traversal methods      
            
          
-   private void preOrder ( BSTNode<E> t)
+   private void preOrder ( AVLNode<E> t)
    {
       if ( t != null)
       {
@@ -320,7 +339,7 @@ public class BST<E extends Comparable<E>>
       }
    }
      
-   private void inOrder ( BSTNode<E> t)
+   private void inOrder ( AVLNode<E> t)
    {
       if ( t != null)
       {

@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/Proj4AVLTreeDriver.java</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/Downloads/Proj4AVLTreeDriver.java</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
